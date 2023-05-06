@@ -15,12 +15,23 @@ public class LogicScript : MonoBehaviour
     public BallScript ball;
     public PlayerScript player;
     public PlayerScript player2;
+    public PlayerScript AIplayer;
+    private Scene currentScene;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "SampleScene - AIplayer")
+        {
+            AIplayer = GameObject.FindGameObjectWithTag("AIPlayer").GetComponent<PlayerScript>();
+        }
+        else if (currentScene.name == "SampleScene")
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>();
+        }
         player2 = GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerScript>();
-        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallScript>();
+        
+        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallScript>();     
     }
 
     [ContextMenu("Increase P1 Score")]
@@ -56,8 +67,16 @@ public class LogicScript : MonoBehaviour
     public void reset()
     {
         ball.resetPosition();
-        player.resetPosition();
+        if (currentScene.name == "SampleScene - AIplayer")
+        {
+            AIplayer.resetPosition();
+        }
+        else if (currentScene.name == "SampleScene")
+        {
+            player.resetPosition();
+        }
         player2.resetPosition();
+        
     }
 
     public void p1Wins()

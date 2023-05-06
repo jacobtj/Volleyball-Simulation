@@ -391,8 +391,9 @@ MonoBehaviour:
   gameOverScreenP1: {fileID: 1712195060}
   gameOverScreenP2: {fileID: 722583367}
   ball: {fileID: 2039194084}
-  player: {fileID: 1930304052}
+  player: {fileID: 0}
   player2: {fileID: 859321968}
+  AIplayer: {fileID: 0}
 --- !u!4 &197702467
 Transform:
   m_ObjectHideFlags: 0
@@ -1122,6 +1123,7 @@ MonoBehaviour:
   myRigidbody: {fileID: 859321970}
   jumpHeight: 10
   moveSpeed: 5
+  ball: {fileID: 2039194079}
 --- !u!61 &859321969
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1824,10 +1826,10 @@ GameObject:
   - component: {fileID: 1930304050}
   - component: {fileID: 1930304049}
   - component: {fileID: 1930304053}
-  - component: {fileID: 1930304052}
+  - component: {fileID: 1930304054}
   m_Layer: 7
-  m_Name: Player
-  m_TagString: Player
+  m_Name: AIPlayer
+  m_TagString: AIPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1920,21 +1922,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1930304052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1930304048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c3ac34aed89a442943765a6525211a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myRigidbody: {fileID: 1930304049}
-  jumpHeight: 10
-  moveSpeed: 5
 --- !u!61 &1930304053
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1961,6 +1948,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4, y: 1.28}
   m_EdgeRadius: 0
+--- !u!114 &1930304054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930304048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c3ac34aed89a442943765a6525211a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRigidbody: {fileID: 1930304049}
+  jumpHeight: 10
+  moveSpeed: 5
+  ball: {fileID: 2039194079}
 --- !u!1 &2039194079
 GameObject:
   m_ObjectHideFlags: 0

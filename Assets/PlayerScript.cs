@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
     public float jumpHeight;
     public float moveSpeed;
     private Vector2 initialPos;
+    private float distance;
+    public GameObject ball;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class PlayerScript : MonoBehaviour
                 myRigidbody.velocity = Vector2.right * moveSpeed;
             }
         }
-        else
+        else if (name == "Player2")
         {
             if (Input.GetKeyDown(KeyCode.W) == true)
             {
@@ -55,6 +57,12 @@ public class PlayerScript : MonoBehaviour
             {
                 myRigidbody.velocity = Vector2.right * moveSpeed;
             }
+        }
+        else if (name == "AIPlayer")
+        {
+            distance = Vector2.Distance(transform.position, ball.transform.position);
+            Vector2 direction = ball.transform.position - transform.position;
+            transform.position = Vector2.MoveTowards(this.transform.position, ball.transform.position, moveSpeed * Time.deltaTime);
         }
     }
 
