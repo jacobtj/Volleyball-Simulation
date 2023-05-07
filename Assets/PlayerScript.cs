@@ -7,9 +7,13 @@ public class PlayerScript : MonoBehaviour
     public Rigidbody2D myRigidbody;
     public float jumpHeight;
     public float moveSpeed;
+    [SerializeField] Transform groundCheckCollider;
     private Vector2 initialPos;
     private float distance;
     public GameObject ball;
+    public bool isGrounded = false;
+    const float groundCheckRadius = 0.2f;
+    [SerializeField] LayerMask groundLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +24,22 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        groundCheck();
         if (name == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) == true)
+            float dirX = Input.GetAxis("Horizontal");
+            myRigidbody.velocity = new Vector2(dirX * moveSpeed, myRigidbody.velocity.y);
+
+            if (Input.GetButtonDown("Jump") && isGrounded == true)
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpHeight);
+            }
+
+            /*if (Input.GetKeyDown(KeyCode.UpArrow) == true && isGrounded == true)
             {
                 myRigidbody.velocity = Vector2.up * jumpHeight;
-            }
-            if (Input.GetKeyDown(KeyCode.LeftArrow) == true)
+            }*/
+            /*if (Input.GetKeyDown(KeyCode.LeftArrow) == true)
             {
                 myRigidbody.velocity = Vector2.left * moveSpeed;
             }
@@ -37,11 +50,19 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.RightArrow) == true)
             {
                 myRigidbody.velocity = Vector2.right * moveSpeed;
-            }
+            }*/
         }
         else if (name == "Player2")
         {
-            if (Input.GetKeyDown(KeyCode.W) == true)
+            float dirX = Input.GetAxis("Horizontal2");
+            myRigidbody.velocity = new Vector2(dirX * moveSpeed, myRigidbody.velocity.y);
+
+            if (Input.GetButtonDown("Jump2") && isGrounded == true)
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpHeight);
+            }
+
+            /*if (Input.GetKeyDown(KeyCode.W) == true && isGrounded == true)
             {
                 myRigidbody.velocity = Vector2.up * jumpHeight;
             }
@@ -56,7 +77,7 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.D) == true)
             {
                 myRigidbody.velocity = Vector2.right * moveSpeed;
-            }
+            }*/
         }
         else if (name == "AIPlayer")
         {
@@ -72,5 +93,13 @@ public class PlayerScript : MonoBehaviour
         gameObject.transform.position = initialPos;
     }
 
-    
+    void groundCheck()
+    {
+        isGrounded = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckCollider.position, groundCheckRadius, groundLayer);
+        if (colliders.Length > 0)
+        {
+            isGrounded = true;
+        }
+    }
 }

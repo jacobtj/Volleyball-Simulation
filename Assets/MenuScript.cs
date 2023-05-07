@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    public void OnPlayButton()
+    public void OnSinglePlayerButton()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void OnMultiPlayerButton()
     {
         SceneManager.LoadScene(1);
     }
