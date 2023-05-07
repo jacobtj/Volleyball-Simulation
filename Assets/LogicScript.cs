@@ -61,6 +61,7 @@ public class LogicScript : MonoBehaviour
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
     }
 
     [ContextMenu("Reset")]
@@ -76,16 +77,17 @@ public class LogicScript : MonoBehaviour
             player.resetPosition();
         }
         player2.resetPosition();
-        
     }
 
     public void p1Wins()
     {
         gameOverScreenP1.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void p2Wins()
     {
         gameOverScreenP2.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
